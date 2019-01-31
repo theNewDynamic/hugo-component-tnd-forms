@@ -1,0 +1,15 @@
+{{/* 
+	Call the TND Form form partial with unique parameter as context
+	
+	@author The New Dynamic
+	
+	@access public
+
+	@context string 
+
+	@example - Mardkown
+		{{< form "contact" >}}
+ */}}
+{{ with .Get 0 }}
+	{{ partial "tnd-forms/form" . }}
+{{ end }}

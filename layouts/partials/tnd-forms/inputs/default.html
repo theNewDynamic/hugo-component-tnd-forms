@@ -1,0 +1,13 @@
+{{/* 
+	Print default markup for following types:
+	- text
+	- phone
+	- email
+	
+	@author The New Dynamic
+	
+	@access private
+
+	@context map [type (String, name (String)]
+*/}}
+<input class="{{ site.Params.tnd_forms.css.input }}" type="{{ .type }}" id="id-{{ .name }}" name="{{ .name }}"{{ with .required }} required {{ end }}>

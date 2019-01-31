@@ -1,0 +1,38 @@
+{{/* 
+	Print a form using passed parameter as data/forms/{filename}
+	
+	@author The New Dynamic
+	
+	@access private
+
+	@context string 
+*/}}
+{{ with index site.Data.forms . }}
+	<form 
+		action="{{ .action }}"
+		accept-charset="UTF-8"
+		name="{{ .id }}"
+		{{/* If Netlify */}}
+		{{ with site.Params.tnd_forms.netlify }}
+			netlify-honeypot="bot-field" netlify
+		{{ end }}
+		class="{{ site.Params.tnd_forms.css.form }}"
+	>
+		{{ with .fields }}
+			{{ range . }}
+				{{ partial "tnd-forms/input" . }}
+			{{ else }}
+			<p>
+				We could not find any <code>.Site.Data.forms.{{ . }}</code>
+			</p>
+			{{ end }}
+		{{ end }}
+		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
+       		{{ default "Submit" .submit }}
+      	</button>
+	</form>
+{{ else }}
+<p>
+	We could not find data for the form "{{ . }}"
+</p>
+{{ end }}

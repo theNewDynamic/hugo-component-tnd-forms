@@ -1,0 +1,22 @@
+{{/* 
+	Print a form input group using the data passed as context,
+	loads appropriate input's partial
+	
+	@author The New Dynamic
+	
+	@access private
+
+	@context map [name (String), label (String), type (String), options (Slice), required (Bool)]
+*/}}
+{{ $type := default "text" .type }}
+{{ $template := $type }}
+{{ $classes := site.Params.tnd_forms.css }}
+<div class="{{ $classes.control }}{{ with .required }} {{ $classes.required }}{{ end }}">
+	<label for="id-{{ .name }}" class="{{ $classes.label }}">
+		{{ .label }} {{ with .required }} * {{ end }}
+	</label>
+	{{ if not (templates.Exists (printf "partials/tnd-forms/inputs/%s.html" $template)) }}
+		{{ $template = "default" }}
+	{{ end }}
+	{{ partial (printf "tnd-forms/inputs/%s" $template) . }}
+</div>
