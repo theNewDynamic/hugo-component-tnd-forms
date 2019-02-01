@@ -13,6 +13,11 @@
 		accept-charset="UTF-8"
 		name="{{ .id }}"
 		{{/* If Netlify */}}
+		{{/* TODO: 
+			Should be in the data file. (default netlify true) 
+			honeypot bool
+			recaptcha bool
+		*/}}
 		{{ with site.Params.tnd_forms.netlify }}
 			netlify-honeypot="bot-field" netlify
 		{{ end }}
