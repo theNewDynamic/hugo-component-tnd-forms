@@ -13,9 +13,9 @@
 		action="{{ .action }}"
 		accept-charset="UTF-8"
 		name="{{ .id }}"
-		data-netlify="true"
+		netlify
 		{{ if not .captcha }}
-			data-netlify-honeypot="bot-field"
+			netlify-honeypot="{{ .id | sha1 }}"
 		{{ end }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
@@ -32,7 +32,7 @@
 			<div data-netlify-recaptcha="true"></div>
 		{{ else }}
 		  	<p class="hidden">
-		    	<label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+		    	<label>Don’t fill this out if you're human: <input name="{{ .id | sha1 }}" /></label>
 		  	</p>
 		{{ end }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
