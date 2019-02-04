@@ -9,7 +9,6 @@ Classes can be added to each form elements using the components' reserved parame
 ```yaml
 params:
   tnd_forms:
-    netlify: true
     css:
       form: 'max-w-md pb-5'
       control: ''
