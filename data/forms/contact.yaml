@@ -12,7 +12,7 @@ fields:
     required: true
   - name: phone
     label: Your phone
-    type: phone
+    type: tel
   - name: subject
     label: Subject
   - name: state
