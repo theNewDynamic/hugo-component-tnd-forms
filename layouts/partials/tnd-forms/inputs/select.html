@@ -9,7 +9,7 @@
 */}}
 {{ with .options }}
 	<div class="{{ site.Params.tnd_forms.css.select_wrapper }}">
-		<select class="{{ default site.Params.tnd_forms.css.input site.Params.tnd_forms.css.select }}" name="$.name" id="id-{{ $.name }}"{{ with $.required }} required {{ end }}>
+		<select class="{{ default site.Params.tnd_forms.css.input site.Params.tnd_forms.css.select }}" name={{ $.name }}" id="id-{{ $.name }}"{{ with $.required }} required {{ end }}>
 			{{ range . }}
 				<option value="{{ . }}">{{ . }}</option>
 			{{ end }}
