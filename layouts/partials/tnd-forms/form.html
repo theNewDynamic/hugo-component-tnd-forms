@@ -8,18 +8,14 @@
 	@context string 
 */}}
 {{ with index site.Data.forms . }}
+	{{ $netlify := true }}
 	<form 
 		action="{{ .action }}"
 		accept-charset="UTF-8"
 		name="{{ .id }}"
-		{{/* If Netlify */}}
-		{{/* TODO: 
-			Should be in the data file. (default netlify true) 
-			honeypot bool
-			recaptcha bool
-		*/}}
-		{{ with site.Params.tnd_forms.netlify }}
-			netlify-honeypot="bot-field" netlify
+		data-netlify="true"
+		{{ if not .captcha }}
+			data-netlify-honeypot="bot-field"
 		{{ end }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
@@ -31,6 +27,13 @@
 				We could not find any <code>.Site.Data.forms.{{ . }}</code>
 			</p>
 			{{ end }}
+		{{ end }}
+		{{ with .captcha }}
+			<div data-netlify-recaptcha="true"></div>
+		{{ else }}
+		  	<p class="hidden">
+		    	<label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+		  	</p>
 		{{ end }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
        		{{ default "Submit" .submit }}
