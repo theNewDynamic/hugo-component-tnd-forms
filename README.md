@@ -6,6 +6,8 @@ Hugo components for handling forms.
 
 Classes can be added to each form elements using the components' reserved parameter key in your site's configuration file.
 
+_Warning_: If using PurgeCSS, you might have to whitelist classes mentioned in there.
+
 ```yaml
 params:
   tnd_forms:
