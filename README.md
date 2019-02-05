@@ -2,6 +2,20 @@
 
 Hugo components for handling forms.
 
+## Creating Forms
+
+Forms added to project's data/forms/ directory. The filename is used to identify the form.
+
+## Including Forms
+
+Forms are including using the `form` shortcode.
+To include `data/forms/contact.yaml`:
+
+```markdown
+## Contact Us!
+{{< form "contact" >}}
+```
+
 ## Styling
 
 Classes can be added to each form elements using the components' reserved parameter key in your site's configuration file.
