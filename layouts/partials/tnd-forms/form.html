@@ -13,10 +13,10 @@
 		action="{{ .action }}"
 		method="POST"
 		accept-charset="UTF-8"
-		name="{{ .id }}"
+		name="{{ .title | urlize }}"
 		netlify
 		{{ if not .captcha }}
-			netlify-honeypot="{{ .id | sha1 }}"
+			netlify-honeypot="{{ .title | sha1 }}"
 		{{ end }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
@@ -33,7 +33,7 @@
 			<div data-netlify-recaptcha="true"></div>
 		{{ else }}
 		  	<p class="hidden">
-		    	<label>Don’t fill this out if you're human: <input name="{{ .id | sha1 }}" /></label>
+		    	<label>Don’t fill this out if you're human: <input name="{{ .title | sha1 }}" /></label>
 		  	</p>
 		{{ end }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
