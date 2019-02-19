@@ -14,33 +14,40 @@
 		method="POST"
 		accept-charset="UTF-8"
 		name="{{ .title | urlize }}"
+		{{/* If the form needs to use a script, it should leave as an entry
+		in the formScripts object of /assets/js/forms.js */}}
+		{{ with .js_use }}
+		data-js-use="{{ . }}"
+		{{ end }}
 		netlify
+		{{/* If captcha is set to false, we default to Netlify's honeypot */}}
 		{{ if not .captcha }}
 			netlify-honeypot="{{ .title | sha1 }}"
 		{{ end }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
+		{{/* We look for the form fields in data. */}}
 		{{ with .fields }}
 			{{ range . }}
+				{{/* We load the input partial which will handle specicif input type markup */}}
 				{{ partial "tnd-forms/input" . }}
-			{{ else }}
-			<p>
-				We could not find any <code>.Site.Data.forms.{{ . }}</code>
-			</p>
 			{{ end }}
 		{{ end }}
+		{{/* If captcha is set, we use netlify-recaptcha */}}
 		{{ with .captcha }}
 			<div data-netlify-recaptcha="true"></div>
 		{{ else }}
+				{{/* Else we use the honeypot as default */}}
 		  	<p class="hidden">
 		    	<label>Don’t fill this out if you're human: <input name="{{ .title | sha1 }}" /></label>
 		  	</p>
 		{{ end }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
-       		{{ default "Submit" .submit }}
-      	</button>
+ 			{{ default "Submit" .submit }}
+  	</button>
 	</form>
 {{ else }}
+{{/* If ID passed to shortcode does not match any existing form in data file: */}}
 <p>
 	We could not find data for the form "{{ . }}"
 </p>
