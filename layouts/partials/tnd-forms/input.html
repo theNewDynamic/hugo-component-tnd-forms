@@ -14,7 +14,7 @@
 {{ $output_classes := $classes.control }}
 {{ with .required }}
 	{{ $output_classes = add $output_classes " " }}
-	{{ $output_classes = add $output_classes $classes.require }}
+	{{ $output_classes = add $output_classes (default "" $classes.require) }}
 {{ end }}
 {{ with .hide }}
 	{{ $output_classes = add $output_classes " " }}

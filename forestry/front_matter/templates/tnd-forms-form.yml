@@ -1,0 +1,22 @@
+---
+label: tnd-forms-form
+hide_body: false
+is_partial: false
+fields:
+- type: text
+  name: title
+  label: Title
+  description: Should be unique to each form
+- type: text
+  name: submit
+  label: Submit Text
+- type: blocks
+  name: fields
+  label: Fields
+  template_types:
+  - form-input-select
+  - form-input-default
+- type: boolean
+  name: captcha
+  label: Use reCaptcha
+  description: Use reCaptcha instead of default honeypot spam filtering

@@ -1,0 +1,29 @@
+---
+label: Form Input Default
+hide_body: false
+is_partial: true
+display_field: label
+fields:
+- type: text
+  name: label
+  label: Label
+  description: Label displayed to the user
+- type: text
+  name: name
+  label: Name
+  description: Unique field ID
+- type: boolean
+  name: required
+  label: Require
+- type: select
+  name: type
+  config:
+    source:
+      type: simple
+    options:
+    - text
+    - email
+    - tel
+    - textarea
+  label: Type
+  default: text

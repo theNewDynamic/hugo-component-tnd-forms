@@ -7,7 +7,7 @@
 
 	@context string 
 */}}
-{{ with index site.Data.forms . }}
+{{ with index site.Data.forms (urlize .) }}
 	{{ $netlify := true }}
 	<form 
 		action="{{ .action }}"
