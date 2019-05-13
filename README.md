@@ -15,9 +15,22 @@ theme:
 - tnd-forms
 ```
 
+## Add to Forestry
+
+Copy the `front_matter` and `snippets` folders from the `components/tnd-forms/forestry/front_matter` directory to your local project's Forestry folder.
+
+Add Forms to Sidebar (see attached image)
+
+![Forestry](/docs/ScreenShot-forestry-setup-2019-05-13.jpg)
+
+
+
 ## Creating Forms
 
 Forms added to project's data/forms/ directory. The filename is used to identify the form.
+
+
+
 
 ## Including Forms
 
