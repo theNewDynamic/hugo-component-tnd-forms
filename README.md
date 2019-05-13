@@ -2,6 +2,19 @@
 
 Hugo components for handling forms.
 
+## Get the Component
+
+`$ git submodule add https://github.com/theNewDynamic/hugo-component-tnd-forms.git components/tnd-forms`
+
+Modify Config `config.yaml`
+
+```
+themesDir: components
+theme:
+- example
+- tnd-forms
+```
+
 ## Creating Forms
 
 Forms added to project's data/forms/ directory. The filename is used to identify the form.
