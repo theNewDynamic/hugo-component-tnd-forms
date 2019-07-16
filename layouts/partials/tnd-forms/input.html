@@ -24,9 +24,13 @@
 	class="{{ $output_classes }}"
 	data-control-for="{{ .name }}"
 >
-	<label for="id-{{ .name }}" class="{{ $classes.label }}">
-		{{ .label }} {{ with .required }} * {{ end }}
-	</label>
+	{{/* Some inputs types prints the label themselves */}}
+	{{ if not (in (slice "single-checkbox") $type) }}
+		<label for="id-{{ .name }}" class="{{ $classes.label }}">
+			{{ .label }} {{ with .required }} * {{ end }}
+		</label>
+	{{ end }}
+	
 	{{ if not (templates.Exists (printf "partials/tnd-forms/inputs/%s.html" $template)) }}
 		{{ $template = "default" }}
 	{{ end }}

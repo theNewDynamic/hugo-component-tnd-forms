@@ -14,8 +14,9 @@ fields:
   name: fields
   label: Fields
   template_types:
-  - form-input-select
   - form-input-default
+  - form-input-select
+  - form-input-single-checkbox
 - type: boolean
   name: captcha
   label: Use reCaptcha
