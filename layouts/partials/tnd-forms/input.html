@@ -25,7 +25,7 @@
 	data-control-for="{{ .name }}"
 >
 	{{/* Some inputs types prints the label themselves */}}
-	{{ if not (in (slice "single-checkbox") $type) }}
+	{{ if not (in (slice "single-checkbox" "hidden") $type) }}
 		<label for="id-{{ .name }}" class="{{ $classes.label }}">
 			{{ .label }} {{ with .required }} * {{ end }}
 		</label>
