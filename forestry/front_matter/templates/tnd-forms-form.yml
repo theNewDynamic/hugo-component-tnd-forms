@@ -10,6 +10,10 @@ fields:
 - type: text
   name: submit
   label: Submit Text
+- type: text
+  name: subject
+  label: Subject field
+  descrition: Subject field of the notification email
 - type: blocks
   name: fields
   label: Fields

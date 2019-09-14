@@ -42,6 +42,10 @@
 		    	<label>Don’t fill this out if you're human: <input name="{{ .title | sha1 }}" /></label>
 		  	</p>
 		{{ end }}
+		{{/* Netlify consumes a input[name="subject"][type="hidden"] to produce email notif subjects */}}
+		{{ with .subject }}
+			<input type="hidden" name="subject" value="{{ . }}">
+		{{ end }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
  			{{ default "Submit" .submit }}
   	</button>

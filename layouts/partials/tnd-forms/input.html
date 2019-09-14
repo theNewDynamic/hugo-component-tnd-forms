@@ -6,7 +6,12 @@
 	
 	@access private
 
-	@context map [name (String), label (String), type (String), options (Slice), required (Bool)]
+	@context Map 
+						String (.name)
+						String (.label)
+						String (.type)
+						Slice (.options)
+						Bool (.required)
 */}}
 {{ $type := default "text" .type }}
 {{ $template := $type }}
