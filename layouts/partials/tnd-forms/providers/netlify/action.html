@@ -1,1 +1,5 @@
-action="{{ .action }}"
+{{ $action := "" }}
+{{ with .redirect }}
+  {{ $action = . }}
+{{ end }}
+action="{{ . }}"
