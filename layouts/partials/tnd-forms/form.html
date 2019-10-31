@@ -41,7 +41,11 @@
 		{{/* CAPTCHA */}}
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "captcha.html" "context" .) }}
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "subject.html" "context" .) }}
+
+		{{/* Only Formspree for now */}}
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "redirect.html" "context" .) }}
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "cc.html" "context" .) }}
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "gotcha.html" "context" .) }}
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
  			{{ default "Submit" .submit }}
   	</button>
