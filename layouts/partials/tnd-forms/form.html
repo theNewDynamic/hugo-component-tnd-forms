@@ -7,23 +7,28 @@
 
 	@context string 
 */}}
-{{ with index site.Data.forms (urlize .) }}
+{{ $form := false }}
+{{ range site.Data.forms }}
+	{{ if eq .id $ }}
+		{{ $form = . }}
+	{{ end }}
+{{ end }}
+{{ with $form }}
+	{{ $provider := partialCached "tnd-forms/func/GetProvider" . "tnd_form_provider" }}
 	{{ $netlify := true }}
 	<form 
-		action="{{ .action }}"
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "action.html" "context" .) | safeHTMLAttr }}
 		method="POST"
 		accept-charset="UTF-8"
-		name="{{ .title | urlize }}"
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "name.html" "context" .) | safeHTMLAttr }}
 		{{/* If the form needs to use a script, it should leave as an entry
 		in the formScripts object of /assets/js/forms.js */}}
 		{{ with .js_use }}
 		data-js-use="{{ . }}"
 		{{ end }}
-		netlify
+		{{ $provider }}
 		{{/* If captcha is set to false, we default to Netlify's honeypot */}}
-		{{ if not .captcha }}
-			netlify-honeypot="{{ .title | sha1 }}"
-		{{ end }}
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "honeypot.html" "context" .) | safeHTMLAttr }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
 		{{/* We look for the form fields in data. */}}
@@ -33,19 +38,10 @@
 				{{ partial "tnd-forms/input" . }}
 			{{ end }}
 		{{ end }}
-		{{/* If captcha is set, we use netlify-recaptcha */}}
-		{{ with .captcha }}
-			<div data-netlify-recaptcha="true"></div>
-		{{ else }}
-				{{/* Else we use the honeypot as default */}}
-		  	<p class="hidden">
-		    	<label>Don’t fill this out if you're human: <input name="{{ .title | sha1 }}" /></label>
-		  	</p>
-		{{ end }}
-		{{/* Netlify consumes a input[name="subject"][type="hidden"] to produce email notif subjects */}}
-		{{ with .subject }}
-			<input type="hidden" name="subject" value="{{ . }}">
-		{{ end }}
+		{{/* CAPTCHA */}}
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "captcha.html" "context" .) }}
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "subject.html" "context" .) }}
+		
 		<button class="{{ site.Params.tnd_forms.css.submit }}" type="submit">
  			{{ default "Submit" .submit }}
   	</button>

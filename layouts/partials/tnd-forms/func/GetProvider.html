@@ -1,0 +1,6 @@
+{{ $provider := "netlify" }}
+{{ with .provider }}
+  {{ $provider = . }}
+{{ end }}
+
+{{ return $provider }}

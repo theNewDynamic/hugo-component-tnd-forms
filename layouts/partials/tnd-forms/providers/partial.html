@@ -1,0 +1,8 @@
+{{ $provider := partialCached "tnd-forms/func/GetProvider" $.context "tnd_form_provider" }}
+{{ $partial := false }}
+{{ with .partial }}
+  {{ $partial_path := printf "tnd-forms/providers/%s/%s" $provider . }}
+    {{ if templates.Exists (printf "partials/%s" $partial_path) }}
+      {{ partial $partial_path $.context }}
+    {{ end }}
+{{ end }}
