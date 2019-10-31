@@ -14,7 +14,7 @@
 	{{ end }}
 {{ end }}
 {{ with $form }}
-	{{ $provider := partialCached "tnd-forms/func/GetProvider" . "tnd_form_provider" }}
+	{{ $provider := partial "tnd-forms/func/GetProvider" . }}
 	{{ $netlify := true }}
 	<form 
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "action.html" "context" .) | safeHTMLAttr }}
