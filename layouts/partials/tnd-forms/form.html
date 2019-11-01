@@ -14,6 +14,7 @@
 	{{ end }}
 {{ end }}
 {{ with $form }}
+	{{ $upload := partial "tnd-forms/func/FormHasFileInput" . }}
 	{{ $provider := partial "tnd-forms/func/GetProvider" . }}
 	{{ $netlify := true }}
 	<form 
@@ -29,6 +30,9 @@
 		{{ $provider }}
 		{{/* If captcha is set to false, we default to Netlify's honeypot */}}
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "honeypot.html" "context" .) | safeHTMLAttr }}
+		{{ with $upload }}
+			enctype="multipart/form-data"
+		{{ end }}
 		class="{{ site.Params.tnd_forms.css.form }}"
 	>
 		{{/* We look for the form fields in data. */}}
