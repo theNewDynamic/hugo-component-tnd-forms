@@ -1,0 +1,22 @@
+{{/*
+  Partial
+  This fetch a partial according to the form's provider.
+
+  @author @regisphilibert
+
+  @context Map (.) The form.
+
+  @access private
+
+  @example - Go Template
+		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "action.html" "context" .) }}
+
+*/}}
+{{ $provider := partial "tnd-forms/func/GetProvider" $.context }}
+{{ $partial := false }}
+{{ with .partial }}
+  {{ $partial_path := printf "tnd-forms/providers/%s/%s" $provider . }}
+    {{ if templates.Exists (printf "partials/%s" $partial_path) }}
+      {{ partial $partial_path $.context }}
+    {{ end }}
+{{ end }}
