@@ -8,12 +8,13 @@
   @access public
 
   @example - Go Template
-  {{ $provider := partial "tnd-forms/func/GetProvider" . }}
+  {{ $provider := partial "tnd-forms/private/GetProvider" . }}
 */}}
 {{/* Default is Netlify */}}
 {{ $provider := "netlify" }}
+{{ $config := partialCached "tnd-forms/private/GetConfig" . "tnd_forms_config" }}
 {{/* If Provider is set globally */}}
-{{ with site.Params.tnd_forms.provider }}
+{{ with $config.provider }}
   {{ $provider = . }}
 {{ end }}
 {{/* If Provider is set on the form itself */}}

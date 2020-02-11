@@ -6,6 +6,7 @@
 	
 	@access private
 
+
 	@context Map 
 						String (.name)
 						String (.label)
@@ -15,7 +16,8 @@
 */}}
 {{ $type := default "text" .type }}
 {{ $template := $type }}
-{{ $classes := site.Params.tnd_forms.css }}
+{{ $config := partialCached "tnd-forms/private/GetConfig" . "tnd_forms_config" }}
+{{ $classes := $config.css }}
 {{ $output_classes := $classes.control }}
 {{ with .required }}
 	{{ $output_classes = add $output_classes " " }}

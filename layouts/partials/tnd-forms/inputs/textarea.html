@@ -7,4 +7,4 @@
 
 	@context map [name (String), required (Bool)]
 */}}
-<textarea class="{{ site.Params.tnd_forms.css.textarea }}" type="{{ .type }}" id="id-{{ .name }}" name="{{ .name }}"{{ with .required }} required {{ end }}></textarea>
+<textarea class="{{ .config.css.textarea }}" type="{{ .type }}" id="id-{{ .name }}" name="{{ .name }}"{{ with .required }} required {{ end }}></textarea>

@@ -1,0 +1,23 @@
+{{/*
+  GetConfig
+  Grab the project's config for the module stored in site.Params.tnd_blocks and merge them with the
+  module's default config stored in site.Params.tnd_blocks_defaults
+
+  This so the user can pull from the defaults, as Hugo Config flat overwrite any .Params' map.
+
+  @author @regisphilbert
+
+  @context Any .
+
+  @access private
+
+  @example - Go Template
+    {{ $config := partialCached "tnd-forms/private/GetConfig" . "tnd_forms_config" }}
+*/}}
+
+{{ $config := site.Params.tnd_forms_defaults }}
+{{ with site.Params.tnd_forms }}
+  {{ $config = merge $config . }}
+{{ end }}
+
+{{ return $config }}

@@ -12,7 +12,7 @@
 		{{ partial "tnd-forms/providers/partial.html" (dict "partial" "action.html" "context" .) }}
 
 */}}
-{{ $provider := partial "tnd-forms/func/GetProvider" $.context }}
+{{ $provider := partial "tnd-forms/private/GetProvider" $.context }}
 {{ $partial := false }}
 {{ with .partial }}
   {{ $partial_path := printf "tnd-forms/providers/%s/%s" $provider . }}

@@ -1,5 +1,5 @@
 params:
-  tnd_forms:
+  tnd_forms_defaults:
     netlify: true
     css:
       form: 'max-w-md pb-5'
