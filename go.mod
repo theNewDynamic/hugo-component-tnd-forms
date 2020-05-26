@@ -1,3 +1,3 @@
 module github.com/theNewDynamic/hugo-component-tnd-forms
 
-go 1.12
+go 1.14
